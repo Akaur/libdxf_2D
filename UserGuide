@@ -1,0 +1,86 @@
+How to use this library
+------------------------
+
+Three steps to use this library:
+STEP 1:
+Create an object of dxf class with output filename with .dxf extension such as dxf file("CAD.dxf")
+where file is an object that holds output filename "design.dxf".
+
+STEP 2:
+To create any entity, first we have to specify the points such as
+  point pt1(x1, y1), pt2(x2, y2), ...., ptn(xn, yn);
+
+where   point is a class and pt1, pt2, .., ptn are objects.
+
+# For line entity _
+Create an object of class line with four parameters such as
+  line horizontal(pt1, pt2, "Layer[1-5]", file);
+
+where pt1         -> starting point
+      pt2         -> ending point
+      Layer[1-5]  -> Layer1, Layer2, Layer3, Layer4 and Layer5.
+                     One can specify any between these.
+      file        -> draw  entity in output filename.
+
+
+# For circle entity _
+Similarly,
+  circle box(pt1, radius, "Layer[1-5]", file);
+
+where pt1     -> center of circle
+      radius  -> radius of circle
+
+== Hatching with circle entity ==
+
+ # Pattern fill _
+   circle box(pt1, radius, "Layer[1-5]", file, 0, "pattern_name", 
+             pattern_color[1-256]);
+
+where   0             -> flag for pattern fill
+        pattern_name  -> choose from pattern_name_list
+        pattern_color ->  color for hatching between 1-256
+
+ # Solid fill
+   circle box(pt1, radius, "Layer[1-5]", file, 1, solid_color[1-256]);
+
+where   1           -> flag for solid fill
+        solid_color -> color for hatching between 1-256
+
+
+# For rectangle entity _
+Similarly,
+  rectangle square(pt1, pt2, "Layer[1-5]", file);
+
+== Hatching with rectangle entity ==
+
+ # Pattern fill _
+   rectangle square(pt1, pt2, "Layer[1-5]", file, 0, "pattern_name", 
+                    pattern_color[1-256]);
+
+ # For solid fill
+   rectangle square(pt1, pt2, "Layer[1-5]", file, 0, solid_color[1-256]);
+
+
+STEP 3:
+Save output file with save() function such as
+  file.save();
+
+
+How to RUN this
+-----------------
+* Save this file in test folder with extension .cpp such as "cad.cpp".
+
+* Open the terminal, run
+	$ cd testing
+
+* Linking with shared library
+	$ g++ -L./lib -Wall -o prog test/cad.cpp -ldxf_2D
+	
+* Make library available at runtime
+	$ export LD_LIBRARY_PATH=./lib/:LD_LIBRARY_PATH
+
+* Run
+	$ ./prog
+
+Now you can open "CAD.dxf" with librecad.
+
