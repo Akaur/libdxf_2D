@@ -2,17 +2,47 @@ How to use this library
 ------------------------
 
 Three steps to use this library:
+
 STEP 1:
-Create an object of dxf class with output filename with .dxf extension such as dxf file("design.dxf")
+Create an object of "dxf" class by passing "filename" with .dxf extension such as 
+  dxf file("design.dxf")
 where file is an object that holds output filename "design.dxf".
 
+
+# Add Multiple Layers
+There are 5 five built-in layers, we can add custom layers too.
+
+To create a custom layer, call layer constructor with four attributes:
+1. Layer name - It must be a string.
+2. Layer color - It can be any color code between 1-256.
+3. Layer width - It can be any of these values: 0, 5, 9, 13(ISO), 15, 18(ISO),
+   20, 25(ISO), 30, 35(ISO), 40, 50(ISO), 53, 60, 70(ISO), 80, 90, 100(ISO), 
+   106, 120, 140(ISO), 158, 200(ISO), 211.
+4. Layer Linetype - It can be continuous, dot, dash, divide, center and border.
+
+Sucha as
+  layer outer("myLayer", 2, 40, "CONTINUOUS", file);
+
+where  mylayer    -> layer name
+       2          -> layer color
+       40         -> layer thickness
+       continuous -> linetype
+       file       -> write layer in output file
+
+
 STEP 2:
-To create any entity, first we have to specify the points such as
+To draw entities, we must call first draw() function such as
+  file.draw();
+
+
+# Basic Point Entity
+To create any entity, we have to specify the points such as
   point pt1(x1, y1), pt2(x2, y2), ...., ptn(xn, yn);
 
 where   point is a class and pt1, pt2, .., ptn are objects.
 
-# For line entity _
+
+# Line Entity
 Create an object of class "line" with four parameters such as
   line horizontal(pt1, pt2, "Layer[1-5]", file);
 
@@ -22,7 +52,8 @@ where pt1         -> starting point
                      One can specify any between these.
       file        -> draw  entity in output filename.
 
-# For arc entity _
+
+# Arc Entity
 Create an object of class "arc" with four parameters such as
   arc round(pt1, radius, start_ang, end_ang, "Layer[1-5]", file);
 
@@ -34,7 +65,8 @@ where pt1         -> centre of arc
                      One can specify any between these.
       file        -> draw  entity in output filename.
 
-# For circle entity _
+
+# Circle Entity
 Similarly,
   circle box(pt1, radius, "Layer[1-5]", file);
 
@@ -43,7 +75,7 @@ where pt1     -> center of circle
 
 == Hatching with circle entity ==
 
- # Pattern fill _
+ ## Pattern fill
    circle box(pt1, radius, "Layer[1-5]", file, 0, "pattern_name", 
              pattern_color[1-256]);
 
@@ -51,14 +83,14 @@ where   0             -> flag for pattern fill
         pattern_name  -> choose from pattern_name_list
         pattern_color ->  color for hatching between 1-256
 
- # Solid fill
+ ## Solid fill
    circle box(pt1, radius, "Layer[1-5]", file, 1, solid_color[1-256]);
 
 where   1           -> flag for solid fill
         solid_color -> color for hatching between 1-256
 
 
-# For rectangle entity _
+# Rectangle Entity
 Similarly,
   rectangle square(pt1, pt2, "Layer[1-5]", file);
 
@@ -77,8 +109,8 @@ Save output file with save() function such as
   file.save();
 
 
-How to RUN this
------------------
+How to RUN
+------------
 * Save this file in test folder with extension .cpp such as "arc.cpp".
 
 * Open the terminal, run
