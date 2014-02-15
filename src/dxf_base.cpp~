@@ -20,8 +20,8 @@
 /** 
  *      \class  base
  *      \fn     base :: read_HeaderClass()
- *      \brief  Open "dxf_headerclass.txt" file for reading and write
- *              the header and class sections to DXF file.
+ *      \brief  Opens "dxf_header.txt" file for reading and writes the header
+ *              of DXF file.
  */
 void base :: read_HeaderClass()
 {	
@@ -42,13 +42,13 @@ void base :: read_HeaderClass()
 
 /** 
  *      \class  base
- *      \fn     base :: read_TableBlock()
- *      \brief  Opens "dxf_tableblock.txt" file for reading and write
- *              the table and block sections to DXF file.
+ *      \fn     base :: read_Header()
+ *      \brief  Opens "dxf_header.txt" file for reading and writes the header
+ *              of DXF file.
  */
 void base :: read_TableBlock()
 {
-  name = "./src/dxf_tableblock.txt";
+  name = "./src/dxf_headerclass.txt";
   readFile.open(name.c_str());
   
   if ((writeFile.is_open()) && (readFile.is_open()))

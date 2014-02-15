@@ -58,6 +58,7 @@ void dxf :: save()
 void dxf :: write_Layer(string layerName, int layerColor,
                          int layerWidth, string layerLtype)
 {
+  read_TableBlock();
   writeFile << " 0 \nLAYER"
                "\n 5 \n43"
                "\n100 \nAcDbSymbolTableRecord"
@@ -69,7 +70,6 @@ void dxf :: write_Layer(string layerName, int layerColor,
                "\n 370 \n" << layerWidth <<
                "\n 390 \nF" 
                "\n";
-  read_TableBlock();
 }
 
 /**

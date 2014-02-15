@@ -116,9 +116,6 @@ $(OBJ_RECT): $(SRC_RECT)
 $(OBJ_ARC): $(SRC_ARC)
 	cd $(OBJ_DIR) && $(CXX) $(CXXFLAGS) ../$(SRC_ARC) && cd ..
 
-$(OBJ_LAYER): $(SRC_LAYER)
-	cd $(OBJ_DIR) && $(CXX) $(CXXFLAGS) ../$(SRC_LAYER) && cd ..
-
 clean:
 	$(RM) obj/*.o test/*.o prog 
 
