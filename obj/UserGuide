@@ -3,7 +3,7 @@ How to use this library
 
 Three steps to use this library:
 STEP 1:
-Create an object of dxf class with output filename with .dxf extension such as dxf file("CAD.dxf")
+Create an object of dxf class with output filename with .dxf extension such as dxf file("design.dxf")
 where file is an object that holds output filename "design.dxf".
 
 STEP 2:
@@ -13,7 +13,7 @@ To create any entity, first we have to specify the points such as
 where   point is a class and pt1, pt2, .., ptn are objects.
 
 # For line entity _
-Create an object of class line with four parameters such as
+Create an object of class "line" with four parameters such as
   line horizontal(pt1, pt2, "Layer[1-5]", file);
 
 where pt1         -> starting point
@@ -22,6 +22,17 @@ where pt1         -> starting point
                      One can specify any between these.
       file        -> draw  entity in output filename.
 
+# For arc entity _
+Create an object of class "arc" with four parameters such as
+  arc round(pt1, radius, start_ang, end_ang, "Layer[1-5]", file);
+
+where pt1         -> centre of arc
+      radius      -> radius of arc
+      start_ang   -> start angle of arc
+      end_ang     -> end angle of arc
+      Layer[1-5]  -> Layer1, Layer2, Layer3, Layer4 and Layer5.
+                     One can specify any between these.
+      file        -> draw  entity in output filename.
 
 # For circle entity _
 Similarly,
@@ -68,13 +79,13 @@ Save output file with save() function such as
 
 How to RUN this
 -----------------
-* Save this file in test folder with extension .cpp such as "cad.cpp".
+* Save this file in test folder with extension .cpp such as "arc.cpp".
 
 * Open the terminal, run
 	$ cd testing
 
 * Linking with shared library
-	$ g++ -L./lib -Wall -o prog test/cad.cpp -ldxf_2D
+	$ g++ -L./lib -Wall -o prog test/arc.cpp -ldxf_2D
 	
 * Make library available at runtime
 	$ export LD_LIBRARY_PATH=./lib/:LD_LIBRARY_PATH

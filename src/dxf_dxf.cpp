@@ -4,7 +4,7 @@
  *       \brief     This file define dxf class.
  *                  dxf class is used to draw multiple entites in a  DXF file.
  *
- *       \version   0.1
+ *       \version   0.2
  *       \date      03/19/2013 09:10:35 PM
  *       Compiler   gcc
  *
@@ -73,6 +73,32 @@ void dxf :: write_Line(double xStart, double yStart, double zStart, double xEnd,
                "\n 11 \n" << xEnd << 
                "\n 21 \n" << yEnd <<
                "\n 31 \n" << zEnd <<
+               "\n";
+}
+
+/**
+ *      \class  dxf
+ *      \fn     dxf :: write_Arc(double xStart, double yStart, double zStart, 
+ *                               double radius, double startAngle,
+ *                               double endAngle, string layer)
+ *      \brief  Writes arc entity to DXF file
+ */
+void dxf :: write_Arc(double xStart, double yStart, double zStart,
+                      double radius, double startAngle, double endAngle,
+                      string layer)
+{
+  writeFile << " 0 \nARC \n 5 \n43"
+               "\n100 \nAcDbEntity"
+               "\n 8 \n" << layer <<
+               "\n 62 \n256"
+               "\n 370 \n-1 \n 6 \nByLayer"
+               "\n100 \nAcDbCircle"
+               "\n 10 \n" << xStart << 
+               "\n 20 \n" << yStart << 
+               "\n 40 \n" << radius <<
+               "\n100 \nAcDbArc"
+               "\n 50 \n" << startAngle <<
+               "\n 51 \n" << endAngle <<
                "\n";
 }
 

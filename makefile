@@ -1,4 +1,5 @@
 # Makefile for libdxf_2D.so
+# version 0.2
 
 # dirs
 OBJ_DIR  := obj/
@@ -32,6 +33,7 @@ SRC_DXF    := $(SRC_DIR)dxf_dxf.cpp
 SRC_LINE   := $(SRC_DIR)dxf_line.cpp
 SRC_POINT  := $(SRC_DIR)dxf_point.cpp
 SRC_RECT   := $(SRC_DIR)dxf_rect.cpp
+SRC_ARC    := $(SRC_DIR)dxf_arc.cpp
 		
 # object files
 OBJ_BASE   := $(OBJ_DIR)dxf_base.o
@@ -40,6 +42,7 @@ OBJ_DXF    := $(OBJ_DIR)dxf_dxf.o
 OBJ_LINE   := $(OBJ_DIR)dxf_line.o
 OBJ_POINT  := $(OBJ_DIR)dxf_point.o
 OBJ_RECT   := $(OBJ_DIR)dxf_rect.o
+OBJ_ARC    := $(OBJ_DIR)dxf_arc.o
 
 # library object files
 LIB_OBJS := $(OBJ_DIR)dxf_circle.o \
@@ -47,14 +50,16 @@ LIB_OBJS := $(OBJ_DIR)dxf_circle.o \
             $(OBJ_DIR)dxf_dxf.o    \
             $(OBJ_DIR)dxf_line.o   \
             $(OBJ_DIR)dxf_point.o  \
-            $(OBJ_DIR)dxf_rect.o
+            $(OBJ_DIR)dxf_rect.o   \
+            $(OBJ_DIR)dxf_arc.o
 
 LIB_OBJ := ../$(OBJ_DIR)dxf_circle.o \
            ../$(OBJ_DIR)dxf_base.o   \
            ../$(OBJ_DIR)dxf_dxf.o    \
            ../$(OBJ_DIR)dxf_line.o   \
            ../$(OBJ_DIR)dxf_point.o  \
-           ../$(OBJ_DIR)dxf_rect.o
+           ../$(OBJ_DIR)dxf_rect.o   \
+           ../$(OBJ_DIR)dxf_arc.o
 
 
 # main output program
@@ -104,6 +109,9 @@ $(OBJ_POINT): $(SRC_POINT)
 $(OBJ_RECT): $(SRC_RECT)
 	cd $(OBJ_DIR) && $(CXX) $(CXXFLAGS) ../$(SRC_RECT) && cd ..
 
+$(OBJ_ARC): $(SRC_ARC)
+	cd $(OBJ_DIR) && $(CXX) $(CXXFLAGS) ../$(SRC_ARC) && cd ..
+
 clean:
-	$(RM) obj/*.o test/*.o
+	$(RM) obj/*.o test/*.o prog 
 

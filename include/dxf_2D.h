@@ -5,7 +5,7 @@
  *       \details   This is a header file that declare classes for creating 2D 
  *                  drawings.    
  *
- *       \version   0.1
+ *       \version   0.2
  *       \date      03/19/2013 01:34:03 PM
  *       Compiler   gcc
  *
@@ -38,7 +38,9 @@ class base
             zEnd,           /**< z-coordinate of ending point(x2, y2, z2) */
             xMid,           /**< x-coordinate of center(x, y) for circle */
             yMid,           /**< y-coordinate of center(x, y) for circle */
-            radius;         /**< radius of circle */
+            radius,         /**< radius of circle */
+            startAngle,     /**< start angle of arc */
+            endAngle;       /**< end angle of arc */
     ifstream readFile;      /**< object for reading files */
     int     flag,           /**< flag  for hatching */
             edges,          /**< edges of boundary path */
@@ -103,7 +105,11 @@ class dxf :  public base
   /// Line entity
   void write_Line(double, double, double, double, double, double,
                   string);
-		
+
+  /// Arc entity
+  void write_Arc(double, double, double, double, double, double,
+                 string);
+
   /// Circle entity
   void write_Circle(double, double, double, double, string);
 
@@ -143,8 +149,23 @@ class line : public base
   public :
   /// Default constructor
   line();
+
   /// Parameterized constructor
   line(point&, point&,string, dxf&);
+};
+
+/**
+ *        \class arc
+ *        \brief Arc entity class
+ */
+class arc : public base
+{
+  public :
+  /// Default constructor
+  arc();
+
+  /// Parameterized constructor
+  arc(point&, double, double, double, string, dxf&);
 };
 
 /**
@@ -179,7 +200,7 @@ class rectangle : public base
   rectangle();
 
   /// Parameterized constructor
-  rectangle(point&, point&,string, dxf&); 
+  rectangle(point&, point&, string, dxf&); 
 
   /// Parameterized constructor for solid fill
   rectangle(point&, point&, string, dxf&, int hflag, 
