@@ -28,7 +28,7 @@ dxf :: dxf ()
 /**
  *      \class  dxf
  *      \fn     dxf :: dxf(string filename)
- *      \brief  Constructor opens the filename for writing and writes DXF 
+ *      \brief  Open "filename" for writing and write DXF 
  *              header to it. 
  */
 dxf  :: dxf (string filename)
@@ -40,8 +40,19 @@ dxf  :: dxf (string filename)
 
 /**
  *      \class  dxf
+ *      \fn     dxf :: draw()
+ *      \brief  Open DXF file for writing Table and Block
+ *              setion to it. 
+ */
+void dxf :: draw()
+{
+  read_TableBlock();
+}
+
+/**
+ *      \class  dxf
  *      \fn     dxf :: save()
- *      \brief  Constructor closes DXF file after writing DXF footer to it. 
+ *      \brief  Closes DXF file after writing DXF footer to it. 
  */
 void dxf :: save()
 {	
@@ -69,7 +80,6 @@ void dxf :: write_Layer(string layerName, int layerColor,
                "\n 370 \n" << layerWidth <<
                "\n 390 \nF" 
                "\n";
-  read_TableBlock();
 }
 
 /**

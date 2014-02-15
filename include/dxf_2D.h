@@ -106,6 +106,9 @@ class dxf :  public base
   /// Parameterised constructor
   dxf(string);
 
+  /// Draw section
+  void draw();
+
   /// Save DXF file
   void save();
 
